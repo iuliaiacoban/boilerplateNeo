@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script>
+        // Improved code here: https://codepen.io/iamntz/pen/jwZpRM?editors=1011   
+        //Add your script here!
+        document.addEventListener("DOMContentLoaded", function(event) {
+            var total = document.getElementById("total");
+            var orderedDate = document.getElementById("ordered_dates");
+            var listItems = document.getElementById("list").getElementsByTagName("li");
+            var isNumeric = /^[-+]?(\d+|\d+\.\d*|\d*\.\d+)$/;
+
+            function isNumber(number) {
+                if (isNumeric.test(number)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            
+            function isDate(content) {
+                return /\d{4}-\d{1,2}-\d{1,2}/.test(content)
+            }
+
+            function liToArray() {
+                var sum = 0;
+                for (var i = 0; i < listItems.length; i++) {
+                    var listItemsVal = listItems[i].innerText;
+
+                    if (isNumber(listItemsVal)) {
+                        sum += parseInt(listItems[i].innerText);
+                        console.log("Sum: " + sum);
+                    } else {
+                        console.log("test");
+                    }
+                }
+
+                total.innerText += sum;
+            }
+
+            function checkTheNumber() {
+                for (var i = 0; i < listItems.length; i++) {
+                    var listItemsVal = listItems[i].innerText;
+
+                    if (isNumber(listItemsVal) && parseInt(listItems[i].innerText) > 200) {
+                        listItems[i].style.color = "green";
+                    } else if (isNumber(listItemsVal) && parseInt(listItems[i].innerText) < 45) {
+                        listItems[i].style.color = "red";
+                    }
+                }
+            }
+
+            liToArray();
+            checkTheNumber();
+        });
+
+    </script>
+
+</head>
+<body>
+
+<p>Without amending the unordered list below, and using ONLY JavaScript please complete the following tasks </p>
+
+<ol>
+    <li>For each list item that contains only a number, add up the total of all of these numbers and show the total in the 'total' span</li>
+    <li>Extract all the dates from the list and show the dates in ascending order in the 'ordered_dates' span below</li>
+    <li>Within the list, change the colour of the list-item text where the number:
+        <ol>
+            <li>is greater than 200 : Green</li>
+            <li>is less than 45 : Red</li>
+        </ol>
+    </li>
+    <li style="color: red">Do not hard-code any value/result. Assume that the contents of the list will change once the contents is returned to us</li>
+</ol>
+
+<p>You may use JQuery and you may use a JavaScript library that makes working with dates easier</p>
+
+    <ul id="list">
+        <li>Gym</li>
+        <li>Monday</li>
+        <li>2017-12-18</li>
+        <li>Lorem Ipsum</li>
+        <li>50</li>
+        <li>2015-07-31</li>
+        <li>210</li>
+        <li>UK</li>
+        <li>2018-01-01</li>
+        <li>40</li>
+    </ul>
+</body>
+
+<span id="total">Total: </span>
+
+<br/>
+<br/>
+
+<span id="ordered_dates">Ordered dates:</span>
+
+
+</html>
