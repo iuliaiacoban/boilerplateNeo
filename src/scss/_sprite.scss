@@ -1,0 +1,56 @@
+.icon {
+    font-size: 10px;
+}
+
+.icon:before {
+    content:' ';
+    vertical-align:middle;
+    display: inline-block;
+    background-image: url("../images/cities.svg");
+    background-repeat: no-repeat;
+    background-size: 51.2em 204.8em;
+}
+
+.no-svg .icon:before {
+    background-image: url("../images/cities.png");
+}
+
+
+
+  .icon.chipmunk:before {
+      background-position: 0em 0em;
+      width: 51.2em;
+      height: 51.2em;
+  }
+
+
+
+
+  .icon.deer:before {
+      background-position: 0em -51.2em;
+      width: 51.2em;
+      height: 51.2em;
+  }
+
+
+
+
+  .icon.fox:before {
+      background-position: 0em -102.4em;
+      width: 51.2em;
+      height: 51.2em;
+  }
+
+
+
+
+  .icon.horse:before {
+      background-position: 0em -153.6em;
+      width: 51.2em;
+      height: 51.2em;
+  }
+
+
+
+
+

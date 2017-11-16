@@ -5,14 +5,15 @@ var gulp = require('gulp'),
     connect = require("gulp-connect"),
     cleanCSS = require("gulp-clean-css"),
     rename = require('gulp-rename'),
-    concat = require('gulp-concat');
+    concat = require('gulp-concat'),
+    svgSprite = require("gulp-svg-sprites");
 
 var path = {
     HTML: './src/*.html',
     SASS: './src/scss/style.scss',
     JS: './src/js/script.js',
     LIB: './src/js/lib/*.js',
-    IMG: './src/images/icons/*',
+    IMG: './src/images/*.svg',
     FONT: './src/fonts/*',
     DEST: './www/',
     DEST_JS: './www/js',
@@ -69,6 +70,17 @@ gulp.task('copyFontFiles', function () {
         .pipe(connect.reload());
 });
 
+gulp.task('sprites', ['copyImgFiles'], function () {
+    return gulp.src('src/images/icons/*.svg')
+        .pipe(svgSprite({
+            cssFile: "scss/_sprite.scss",
+            svg: {
+                sprite: "images/cities.svg"
+            }
+        }))
+        .pipe(gulp.dest("src/"));
+});
+
 gulp.task('connect', function() {
     connect.server({
         livereload: true
@@ -84,4 +96,4 @@ gulp.task('watch', function() {
     livereload.listen();
 });
 
-gulp.task('default', ["watch", "connect", "css", "cleanCSS", "js", "copyImgFiles", "copyFontFiles", "copyHtmlFiles"]);
+gulp.task('default', ["watch", "connect", "css", "cleanCSS", "js", "copyImgFiles", "copyFontFiles", "copyHtmlFiles", "sprites"]);

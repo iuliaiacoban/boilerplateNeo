@@ -226,3 +226,7 @@ h3 {
         transform: translate3d(-50%, -50%, 0);
     }
 }
+
+.icon:before {
+    background-size: 50% 50%;
+}
